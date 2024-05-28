@@ -8,6 +8,8 @@
 async function fetchImages() {
     const query = 'products'; // Replace this with your actual query
     const requests = Array.from({ length: 2 }, (_, i) => i + 1).map(async (i) => {
+        // const clientId = import.meta.env.VITE_CLIENT_ID;
+        //     console.log(clientId);
         try {
             const localStorageData = localStorage.getItem(`page${i}-${query}`);
             if (localStorageData) {
@@ -16,9 +18,11 @@ async function fetchImages() {
 
             }
 
-            require('dotenv').config();
+            // require('dotenv').config();
 
-            const clientId = process.env.CLIENT_ID;
+            const clientId = import.meta.env.VITE_CLIENT_ID;
+            console.log(clientId);
+            // const clientId = 'J6zOTWsy5AI2yMlOlrYH6nkb2j73AzPVMcg5JqQ5B6I';
             const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${clientId}&page=${i}&per_page=30&query=${query}`);
             console.log('Rate limit:', res.headers.get('X-Ratelimit-Limit'));
             console.log('Remaining:', res.headers.get('X-Ratelimit-Remaining'));
