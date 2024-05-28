@@ -6,7 +6,7 @@
 //     { id: 5, name: "Item 5", price: 500, image: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" },
 // ];
 async function fetchImages() {
-    const query = 'products'; // Replace this with your actual query
+    const query = 'product'; // Replace this with your actual query
     const requests = Array.from({ length: 2 }, (_, i) => i + 1).map(async (i) => {
         // const clientId = import.meta.env.VITE_CLIENT_ID;
         //     console.log(clientId);

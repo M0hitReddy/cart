@@ -36,10 +36,10 @@ function Cart() {
             <section className='p-2 flex flex-col gap-6 mx-2 sm:mx-10 md:mx-20 mt-3'>
                 <h1 className='font-bold text-2xl'>MY CART <span className='text-gray-500'>{`(${cartState.totQuantity})`}</span></h1>
                 <div className='lg:w-1/2 md:w-[75%] sm:w-full flex flex-col  gap-6 bg-gry-500 sm:h-screen sm:overflow-y-auto sm:pr-2'>
-                    {cartItems.map((item, index) => (
+                    {cartState.cart.map((item, index) => (
                         <React.Fragment key={item.id}>
                             <div className='flex gap-3 w-full  m-aut'>
-                                <div><img src={item.image} alt="" className='min-h-[8rem] w-[8rem]  sm:h-[14rem] w-full sm:w-[18rem] object-cover object-center rounded-lg' /></div>
+                                <div><img src={item.image} alt="" className='min-h-[8rem] sm:h-[14rem] w-full sm:w-[18rem] object-cover object-center rounded-lg' /></div>
                                 <div className='flex-grow flex flex-col justify-between gap-4'>
                                     <div className='flex justify-between align-top'>
                                         <div className='flex flex-col gap-3 justify-between'>
@@ -51,9 +51,9 @@ function Cart() {
                                             <Delete color={'#ac3131'}/> 
                                         </button> */}
                                         </div>
-                                        <div className='flex gap-2 flex-col items-center py-2'>
+                                        <div className='flex gap-2 flex-col  items-center py-2'>
                                             <input type="checkbox" className='hidden'/>
-                                            <button className={`bg-${item.checked ? 'black' : 'white'} h-5 w-5 rounded-[1px] border-2 border-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-black`} onClick={() => cartDispatch({type:'CHECK_ITEM', payload:item.id})}><Tick color={`white`}/></button>
+                                            <button className={`bg-${(!item.checked) ? 'white' : 'black'} h-5 w-5 rounded-[1px] border-2 border-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-black`} onClick={() => cartDispatch({type:'CHECK_ITEM', payload:item.id})}><Tick color={`white`}/><Tick color={'white'}/></button>
                                             <button className='w-max rounded-full max-[440px]:px-2 hover:bg-gray-200 p-2' onClick={() => handlePlusMinus(item, 2)}>
                                                 <Delete color={'#ac3131'} />
                                             </button>
@@ -64,7 +64,7 @@ function Cart() {
                                         <div>Quantity: {item.quantity}</div>
                                         <div>Subtotal: ${item.price * item.quantity}</div>
                                     </div> */}
-                                    <div item={item} className='bg-zinc-800 rounded-full flex justify-between text-white' >
+                                    <div item={item} className='bg-zinc-800 rounded-full w-full flex justify-between text-white' >
                                         <span><button className='px-8 border-e py-1 h-full max-[440px]:px-2' onClick={() => handlePlusMinus(item, 0)}>
                                             {item.quantity === 1 ? <Delete color={'white'} /> : <Minus />}
                                         </button></span>

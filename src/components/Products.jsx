@@ -34,7 +34,7 @@ function Products() {
         // const item = e.target.item;
         // setAdding(true);
         if (adding[item.id] || something) return;
-        setAdding({ ...adding, [item.id]: true });
+        setAdding(prevState => ({...prevState, [item.id]: true}));
         setSomething(true);
         console.log(item);
         setTimeout(() => {
@@ -63,7 +63,7 @@ function Products() {
                                     <span>${item.price}</span>
                                 </div>
 
-                                <button item={item} className={`bg-zinc-${adding[item.id] ? '600' : '800'} px-2 py-1 rounded-lg text-white hover:bg-zinc-700 hover:scale-105 duration-300 ease-in-out`} onClick={() => handleAddToCart(item)}>
+                                <button item={item} className={`bg-zinc-${(!adding[item.id]) ? '800' : '600'} px-2 py-1 rounded-lg text-white hover:bg-zinc-700 hover:scale-105 duration-300 ease-in-out`} onClick={() => handleAddToCart(item)}>
                                     {adding[item.id] ? <Spinner /> : 'Add to cart'}
                                 </button>
                             </div>
