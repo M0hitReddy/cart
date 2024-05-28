@@ -49,4 +49,4 @@ async function items() {
     return items;
 }
 
-export default await items();
+export default items;
